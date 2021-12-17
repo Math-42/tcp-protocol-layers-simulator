@@ -27,4 +27,4 @@ Nesse momento todos os arquivos estão compilados e prontos para serem executado
 
 <code>$ make run</code>
 
-<h4>Para fechar o programa basta inserir exit ou pressiona Ctrl+C</h4>
+<h4>Para fechar o programa basta inserir "exit" entrada ou pressionar Ctrl+C</h4>

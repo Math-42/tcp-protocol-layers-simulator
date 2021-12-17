@@ -6,7 +6,7 @@
 #include "transport.hpp"
 #include "application.hpp"
 
-#define ERROR_HANDLING_TYPE 0
+#define ERROR_HANDLING_TYPE 2
 
 class DataLink : public Layer {
    public:
@@ -23,8 +23,12 @@ class DataLink : public Layer {
     static std::vector<bool> evenParityControl(std::vector<bool> frame);
 
     static std::vector<bool> oddParityControl(std::vector<bool> frame);
+    
+	static std::vector<bool> crc32Control(std::vector<bool> frame);
 
     static bool evenParityCheck(std::vector<bool>& frame);
 
     static bool oddParityCheck(std::vector<bool>& frame);
+
+    static bool crc32Check(std::vector<bool>& frame);
 };

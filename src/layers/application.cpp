@@ -11,9 +11,9 @@ void Application::send(std::string message) {
     std::vector<bool> bitFrame;
 
     for (auto character : message) {
-        std::bitset<8> tempBits(character);
+        std::bitset<8> tempBits(character);//le um caracter de 8bits
         for (int i = 7; i >= 0; i--) {
-            bitFrame.push_back(tempBits[i]);
+            bitFrame.push_back(tempBits[i]);//salva na ordem correta
         }
     }
 

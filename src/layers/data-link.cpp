@@ -73,32 +73,32 @@ std::vector<bool> DataLink::oddParityControl(std::vector<bool> frame) {
 std::vector<bool> DataLink::crc32Control(std::vector<bool> frame) {
     std::cout << "\033[34m[INFO]\033[0m Polinômio:" << std::endl;
 
-    std::vector<bool> polinomio{
-        1, 0, 0, 0, 0, 0, 1, 0,
-        0, 1, 1, 0, 0, 0, 0, 0,
-        1, 0, 0, 0, 1, 1, 1, 0,
-        1, 1, 0, 1, 1, 0, 1, 1,
-        1};
+    std::vector<bool> polinomio{// Polinomio que ser;a utilizado
+                                1, 0, 0, 0, 0, 0, 1, 0,
+                                0, 1, 1, 0, 0, 0, 0, 0,
+                                1, 0, 0, 0, 1, 1, 1, 0,
+                                1, 1, 0, 1, 1, 0, 1, 1,
+                                1};
 
     std::cout << std::endl;
 
     for (int i = 0; i < polinomio.size(); i++) {
-        if (polinomio[i]) std::cout << "+x^" << polinomio.size()- 1 - i << " ";
+        if (polinomio[i]) std::cout << "+x^" << polinomio.size() - 1 - i << " ";
     }
 
     std::cout << std::endl;
 
     std::vector<bool> remaining = frame;
-    remaining.resize(remaining.size() + 32);
+    remaining.resize(remaining.size() + 32);  //aloca espaço para o resto
 
+    // Aplica um XOR entre o polinomio e a mensagem, executando um shift cada vez
     for (int i = 0; i < remaining.size() - 32; i++) {
-
         if (remaining[i]) {
             for (int j = 0; j < polinomio.size(); j++) {
                 remaining[i + j] = remaining[i + j] ^ polinomio[j];
             }
         }
-        remaining[i] = frame[i];
+        remaining[i] = frame[i];  // copia a mensagem original novamente
     }
 
     frame = remaining;
@@ -123,7 +123,6 @@ bool DataLink::oddParityCheck(std::vector<bool>& frame) {
 }
 
 bool DataLink::crc32Check(std::vector<bool>& frame) {
-
     std::vector<bool> polinomio{
         1, 0, 0, 0, 0, 0, 1, 0,
         0, 1, 1, 0, 0, 0, 0, 0,
@@ -135,7 +134,6 @@ bool DataLink::crc32Check(std::vector<bool>& frame) {
     remaining.resize(remaining.size());
 
     for (int i = 0; i < remaining.size() - 32; i++) {
-
         if (remaining[i]) {
             for (int j = 0; j < polinomio.size(); j++) {
                 remaining[i + j] = remaining[i + j] ^ polinomio[j];
@@ -149,9 +147,10 @@ bool DataLink::crc32Check(std::vector<bool>& frame) {
 
     bool hasError = false;
     for (int i = 0; i < polinomio.size() - 1; i++) {
-        frame.erase(frame.end());
-        if (!hasError) hasError = remaining.size();
+        frame.erase(frame.end());                    //remove os bits de verificação da mensagem
+        if (!hasError) hasError = remaining[remaining.size()];  //testa se o resto é zero ou se possui
+        remaining.erase(remaining.end());                    //remove os bits de verificação da mensagem
     }
 
-    return true;
+    return hasError;
 }

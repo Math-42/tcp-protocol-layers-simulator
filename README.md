@@ -17,13 +17,13 @@ Cumprindo os requisitos do trabalho, nós desenvolvemos um <i>simulador</i> que 
 
 <h2>Como executar</h2>
 
-Para executar o nosso programa, basta utilizar o Makefile. Primeiro, entre no diretório do programa. Depois, execute os seguintes comandos
+Para executar o nosso programa, basta utilizar o Makefile. Primeiro, entre no diretório do programa. Depois, execute os seguintes comandos:
 
 <code>$ make all</code> 
 
 Nesse momento todos os arquivos estão compilados e prontos para serem executados
 
-<h4>Para executar</h4>
+<h4>Para executar:</h4>
 
 <code>$ make run</code>
 

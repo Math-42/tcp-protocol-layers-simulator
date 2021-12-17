@@ -13,7 +13,7 @@ Desenvolvido por:
 
 <h2>Sobre o trabalho</h2>
 
-Cumprindo os requisitos do trabalho, nós desenvolvemos um <i>simulador</i> que mostrada cada uma das camadas de protocolo, mostrando logs sobre o que está ocorrendo com a mensagem em cada um dos niveis.
+Cumprindo os requisitos do trabalho, nós desenvolvemos um <i>simulador</i> que emula e mostra cada uma das camadas de um protocolo, emitindo logs sobre o que está ocorrendo com a mensagem em cada um dos niveis.
 
 <h2>Como executar</h2>
 
